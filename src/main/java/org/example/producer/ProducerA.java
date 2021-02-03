@@ -7,6 +7,9 @@ import org.example.connect.MQConnection;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * No confirmation mechanism
+ */
 public class ProducerA {
     public static void main(String[] args) throws IOException, TimeoutException {
         Connection connection = MQConnection.getConnection();
