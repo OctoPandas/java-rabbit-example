@@ -13,11 +13,12 @@ public class ConsumerA {
         Channel channel = connection.createChannel();
         DefaultConsumer consumer = new DefaultConsumer(channel) {
             @Override
-            public void handleDelivery(String tag, Envelope envelope, AMQP.BasicProperties props, byte[] body) throws IOException {
+            public void handleDelivery(String tag, Envelope envelope, AMQP.BasicProperties props, byte[] body) {
                 String msg = new String(body, StandardCharsets.UTF_8);
                 System.out.println(msg);
             }
         };
         channel.basicConsume("myQ", true, consumer);
+        // Do not close channel here, or the process will end.
     }
 }
